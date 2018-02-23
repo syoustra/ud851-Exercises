@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             String message = "Search clicked";
             Toast.makeText(context, message, Toast.LENGTH_LONG).show();
             return true;
-        } else {
+        } else {                                            // SOLUTION CODE DOES NOT HAVE THIS AS AN ELSE?!?!?!?
             return super.onOptionsItemSelected(item);
         }
     }
