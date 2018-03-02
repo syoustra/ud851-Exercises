@@ -40,6 +40,9 @@ import static android.content.ContentValues.TAG;
 // COMPLETED (4) From GreenAdapter, extend RecyclerView.Adapter<NumberViewHolder>
 public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHolder> {
 
+    private static final String TAG = GreenAdapter.class.getSimpleName();       // THIS CODE TAKEN FROM SOLUTION
+
+
     //  COMPLETED (1) Add a private int variable called mNumberItems
     private int mNumberItems;
 
