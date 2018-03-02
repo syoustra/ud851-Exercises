@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         mNumbersList.setHasFixedSize(true);
 
         // COMPLETED (8) Store a new GreenAdapter in mAdapter and pass it NUM_LIST_ITEMS
-        GreenAdapter mAdapter = new GreenAdapter(NUM_LIST_ITEMS);
+        GreenAdapter mAdapter = new GreenAdapter(NUM_LIST_ITEMS);                           // SOLUTION DOESN'T HAVE FIRST GreenAdapter
 
         // COMPLETED (9) Set the GreenAdapter you created on mNumbersList
         mNumbersList.setAdapter(mAdapter);
