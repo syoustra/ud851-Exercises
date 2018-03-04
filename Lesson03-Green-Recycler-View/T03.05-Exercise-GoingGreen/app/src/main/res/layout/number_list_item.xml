@@ -45,5 +45,5 @@
         android:layout_gravity="center_vertical|end"
         android:fontFamily="monospace"
         android:textColor="#000"
-        />
+        />                                  <!-- SOLUTION ALSO HAD tools:text="ViewHolder instance: 7"  -->
 </FrameLayout>
