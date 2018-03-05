@@ -208,7 +208,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
 
         @Override
         public void onClick(View v) {
-            mOnClickListener.onListItemClick(getAdapterPosition());
+            mOnClickListener.onListItemClick(getAdapterPosition());         // SOLUTION SPLIT INTO TWO LINES int clickedPosition = getAdapterPosition();
         }
     }
 }
