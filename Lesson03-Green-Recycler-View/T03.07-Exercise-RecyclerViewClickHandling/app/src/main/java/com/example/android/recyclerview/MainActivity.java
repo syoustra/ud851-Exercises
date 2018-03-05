@@ -114,10 +114,10 @@ public class MainActivity extends AppCompatActivity implements GreenAdapter.List
     public void onListItemClick(int clickedItemIndex) {
         if (mToast != null) {
             mToast.cancel();
-    } else {                                                                // SOLUTION HAS NO ELSE
-            String toastMessage = "You have clicked #" + clickedItemIndex;
-            mToast = Toast.makeText(this, toastMessage, Toast.LENGTH_LONG);
-            mToast.show();
-        }
-}
+        }                                                                             // SOLUTION HAS NO ELSE
+        String toastMessage = "You have clicked #" + clickedItemIndex;
+        mToast = Toast.makeText(this, toastMessage, Toast.LENGTH_LONG);
+        mToast.show();
+
+    }
 }
