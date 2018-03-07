@@ -64,7 +64,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
      * @return A new NumberViewHolder that holds the View for each list item
      */
     @Override
-    public NumberViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public NumberViewHolder  (ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
         int layoutIdForListItem = R.layout.number_list_item;
         LayoutInflater inflater = LayoutInflater.from(context);
