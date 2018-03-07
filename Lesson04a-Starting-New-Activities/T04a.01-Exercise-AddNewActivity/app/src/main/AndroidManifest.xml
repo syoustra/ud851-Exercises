@@ -36,6 +36,7 @@
         <!-- COMPLETED (9) Create a meta-data tag for this Activity -->
         <!-- COMPLETED (10) Specify the name of the meta-data as android.support.PARENT_ACTIVITY -->
         <!-- COMPLETED (11) Specify the value of the meta data as .MainActivity -->
+                                                            <!-- SOLUTION HAS com.example.android.explicitintent.ChildActivity -->
         <activity
             android:name=".ChildActivity"
             android:parentActivityName=".MainActivity">
