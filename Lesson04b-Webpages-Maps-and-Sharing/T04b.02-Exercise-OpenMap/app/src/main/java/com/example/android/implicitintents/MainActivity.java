@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         String address = "1600 Amphitheatre Way, CA";
 
         // COMPLETED (6) Use Uri.Builder with the appropriate scheme and query to form the Uri for the address
-                                                                                        //CAME COMPLETELY FROM SOLUTION
+                                                                                        //CAME COMPLETELY FROM VIDEO/SOLUTION
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("geo")
                 .path("0,0")
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         Uri addressUri = builder.build();
 
         // COMPLETED (7) Replace the Toast with a call to showMap, passing in the Uri from the previous step
-        showMap();
+        showMap(addressUri);
     }
 
     /**
@@ -121,12 +121,12 @@ public class MainActivity extends AppCompatActivity {
 
     // COMPLETED (1) Create a method called showMap with a Uri as the single parameter
     // Do steps 2 - 4 within the showMap method
-    private void showMap(Uri url) {
+    private void showMap(Uri geolocation) {
         // COMPLETED (2) Create an Intent with action type, Intent.ACTION_VIEW
-        Intent intent = new Intent (Intent.ACTION_VIEW, url);
+        Intent intent = new Intent (Intent.ACTION_VIEW);
 
         // COMPLETED (3) Set the data of the Intent to the Uri passed into this method
-        intent.setData(url);
+        intent.setData(geolocation);
 
         // COMPLETED (4) Verify that this Intent can be launched and then call startActivity
         if(intent.resolveActivity(getPackageManager()) != null) {
