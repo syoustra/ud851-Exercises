@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
      * @param v Button that was clicked.
      */
     public void onClickOpenWebpageButton(View v) {
-        // TODO (5) Create a String that contains a URL ( make sure it starts with http:// or https:// )
-        String mWebAddress = "http://www.udacity.com";
+        // COMPLETED (5) Create a String that contains a URL ( make sure it starts with http:// or https:// )
+        String mWebAddress = "http://www.udacity.com";                              //SOLUTION DOES NOT USE mVariable
 
-        // TODO (6) Replace the Toast with a call to openWebPage, passing in the URL String from the previous step
+        // COMPLETED (6) Replace the Toast with a call to openWebPage, passing in the URL String from the previous step
         openWebPage(mWebAddress);
     }
 
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     private void openWebPage(String webPage) {
 
         // COMPLETED (2) Use Uri.parse to parse the String into a Uri
-        Uri uri = Uri.parse(webPage);
+        Uri uri = Uri.parse(webPage);                                           //SOLUTION SWAPPED THE TWO VARIABLE NAMES
 
         // COMPLETED (3) Create an Intent with Intent.ACTION_VIEW and the webpage Uri as parameters
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
