@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
 
         // TODO (9) If the savedInstanceState bundle is not null, set the text of the URL and search results TextView respectively
-        if (savedInstanceState != null) {
+        if (savedInstanceState != null) {                                           //SOLUTION SPLITS OUT String FOR .setText()
             mUrlDisplayTextView.setText(savedInstanceState.getString(SEARCH_RESULTS_QUERY_URL));
             mSearchResultsTextView.setText(savedInstanceState.getString(SEARCH_RESULTS_RAW_JSON));
         }
@@ -163,9 +163,9 @@ public class MainActivity extends AppCompatActivity {
     // Do the following steps within onSaveInstanceState
 
     @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+    public void onSaveInstanceState(Bundle outState) {                                      //SOLUTION DIDN'T HAVE DEFAULT PersistableBundle outPersistentState
         // TODO (4) Make sure super.onSaveInstanceState is called before doing anything else
-        super.onSaveInstanceState(outState, outPersistentState);
+        super.onSaveInstanceState(outState);
 
         // TODO (5) Put the contents of the TextView that contains our URL into a variable
         // TODO (6) Using the key for the query URL, put the string in the outState Bundle
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO (7) Put the contents of the TextView that contains our raw JSON search results into a variable
         // TODO (8) Using the key for the raw JSON search results, put the search results into the outState Bundle
-        String jsonToSave = mSearchResultsTextView.toString();                                  //GOT .getText FROM VIDEO
+        String jsonToSave = mSearchResultsTextView.getText().toString();                                  //GOT .getText FROM VIDEO
         outState.putString(SEARCH_RESULTS_RAW_JSON, jsonToSave);
     }
 }
