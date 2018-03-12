@@ -108,9 +108,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // COMPLETED (20) Use putString with SEARCH_QUERY_URL_EXTRA as the key and the String value of the URL as the value
         queryBundle.putString(SEARCH_QUERY_URL_EXTRA, githubSearchUrl.toString());
 
-        // TODO (21) Call getSupportLoaderManager and store it in a LoaderManager variable
-        // TODO (22) Get our Loader by calling getLoader and passing the ID we specified
-        // TODO (23) If the Loader was null, initialize it. Else, restart it.
+        // COMPLETED (21) Call getSupportLoaderManager and store it in a LoaderManager variable
+        LoaderManager loaderManager = getLoaderManager();                               //CHANGED VIA FORUM AS ERROR FIX
+        // COMPLETED (22) Get our Loader by calling getLoader and passing the ID we specified
+        Loader<String> githubSearchLoader = loaderManager.getLoader(GITHUB_SEARCH_LOADER);
+        // COMPLETED (23) If the Loader was null, initialize it. Else, restart it.
+        if (githubSearchLoader == null) {
+            loaderManager.initLoader(GITHUB_SEARCH_LOADER, queryBundle, this);
+        } else {
+            loaderManager.restartLoader(GITHUB_SEARCH_LOADER, queryBundle, this)
+        }
     }
 
     /**
