@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if (githubSearchLoader == null) {
             loaderManager.initLoader(GITHUB_SEARCH_LOADER, queryBundle, this);
         } else {
-            loaderManager.restartLoader(GITHUB_SEARCH_LOADER, queryBundle, this)
+            loaderManager.restartLoader(GITHUB_SEARCH_LOADER, queryBundle, this);
         }
     }
 
