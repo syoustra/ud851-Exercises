@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         queryBundle.putString(SEARCH_QUERY_URL_EXTRA, githubSearchUrl.toString());
 
         // COMPLETED (21) Call getSupportLoaderManager and store it in a LoaderManager variable
-        LoaderManager loaderManager = getLoaderManager();                               //CHANGED VIA FORUM AS ERROR FIX
+        LoaderManager loaderManager = getLoaderManager();                                   //CHANGED VIA FORUM AS ERROR FIX
         // COMPLETED (22) Get our Loader by calling getLoader and passing the ID we specified
         Loader<String> githubSearchLoader = loaderManager.getLoader(GITHUB_SEARCH_LOADER);
         // COMPLETED (23) If the Loader was null, initialize it. Else, restart it.
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
             @Override
             protected void onStartLoading() {
-                super.onStartLoading();
+//                super.onStartLoading();                                             //THIS LINE IS IN VIDEO, BUT NOT SOLUTION
                 // Within onStartLoading
 
                 // COMPLETED (6) If args is null, return.
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 // COMPLETED (12) Copy the try / catch block from the AsyncTask's doInBackground method
                 try {
                     URL githubUrl = new URL(searchQueryUrlString);
-                    return NetworkUtils.getResponseFromHttpUrl(githubUrl);
+                    return NetworkUtils.getResponseFromHttpUrl(githubUrl);                  //SOLUTION HAS THIS SPLIT INTO TWO LINES
                 } catch (IOException e) {
                     e.printStackTrace();
                     return null;
@@ -218,8 +218,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mLoadingIndicator.setVisibility(View.INVISIBLE);
 
         // COMPLETEDo (15) Use the same logic used in onPostExecute to show the data or the error message
-        if (data != null && !data.equals("")) {
-            showJsonDataView();
+                                                                                   //SOLUTION DOES NOT MATCH VIDEO (SOURCE FOR MY CODE)!!!!!
+        if (data != null && !data.equals("")) {                                  //SOLUTION HAS REVERSE (if null, showError; else)
+            showJsonDataView();                                                 //SOLUTION ALSO FLIPS THESE TWO LINES (.setText, THEN showJson)
             mSearchResultsTextView.setText(data);
         } else {
             showErrorMessage();
