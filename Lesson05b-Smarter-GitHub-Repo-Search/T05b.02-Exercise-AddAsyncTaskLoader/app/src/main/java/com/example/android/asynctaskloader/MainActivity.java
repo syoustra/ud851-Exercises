@@ -16,6 +16,7 @@
 package com.example.android.asynctaskloader;
 
 import android.app.LoaderManager;
+import android.content.AsyncTaskLoader;
 import android.content.Loader;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -135,11 +136,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
-    public Loader<String> onCreateLoader(int id, Bundle args) {
-        return null;
-    }
-
-    @Override
     public void onLoadFinished(Loader<String> loader, String data) {
 
     }
@@ -149,18 +145,44 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     }
 
-    // TODO (3) Override onCreateLoader
+    // COMPLETED (3) Override onCreateLoader
     // Within onCreateLoader
-        // TODO (4) Return a new AsyncTaskLoader<String> as an anonymous inner class with this as the constructor's parameter
-            // TODO (5) Override onStartLoading
+
+    @Override
+    public Loader<String> onCreateLoader(int id, final Bundle args) {
+
+        // COMPLETED (4) Return a new AsyncTaskLoader<String> as an anonymous inner class with this as the constructor's parameter
+        return new AsyncTaskLoader<String>(this) {
+            @Override
+            public String loadInBackground() {
+                return null;
+            }
+
+
+            // COMPLETED (5) Override onStartLoading
+
+            @Override
+            protected void onStartLoading() {
+                super.onStartLoading();
                 // Within onStartLoading
 
-                // TODO (6) If args is null, return.
+                // COMPLETED (6) If args is null, return.
+                if (args == null) {
+                    return;
+                }
+                // COMPLETED (7) Show the loading indicator
+                mLoadingIndicator.setVisibility(View.VISIBLE);
 
-                // TODO (7) Show the loading indicator
-
-                // TODO (8) Force a load
+                // COMPLETED (8) Force a load
+                forceLoad();
                 // END - onStartLoading
+            }
+
+
+        }
+
+    }
+
 
             // TODO (9) Override loadInBackground
 
@@ -188,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            mLoadingIndicator.setVisibility(View.VISIBLE);
+
         }
 
         @Override
