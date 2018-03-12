@@ -136,15 +136,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mErrorMessageDisplay.setVisibility(View.VISIBLE);
     }
 
-    @Override
-    public void onLoadFinished(Loader<String> loader, String data) {
 
-    }
-
-    @Override
-    public void onLoaderReset(Loader<String> loader) {
-
-    }
 
     // COMPLETED (3) Override onCreateLoader
     // Within onCreateLoader
@@ -201,20 +193,37 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
 
 
-        }
+        };
 
     }
 
 
-    // TODO (13) Override onLoadFinished
+    // COMPLETED (13) Override onLoadFinished
+    @Override
+    public void onLoadFinished(Loader<String> loader, String data) {
+
 
         // Within onLoadFinished
-        // TODO (14) Hide the loading indicator
+        // COMPLETED (14) Hide the loading indicator
+        mLoadingIndicator.setVisibility(View.INVISIBLE);
 
-        // TODO (15) Use the same logic used in onPostExecute to show the data or the error message
+        // COMPLETED (15) Use the same logic used in onPostExecute to show the data or the error message
+        if (data != null && !data.equals("")) {
+            showJsonDataView();
+            mSearchResultsTextView.setText(data);
+        } else {
+            showErrorMessage();
+        }
+
         // END - onLoadFinished
+    }
 
-    // TODO (16) Override onLoaderReset as it is part of the interface we implement, but don't do anything in this method
+    // COMPLETED (16) Override onLoaderReset as it is part of the interface we implement, but don't do anything in this method
+    @Override
+    public void onLoaderReset(Loader<String> loader) {
+
+    }
+
 
     // TODO (29) Delete the AsyncTask class
     public class GithubQueryTask extends AsyncTask<URL, Void, String> {
