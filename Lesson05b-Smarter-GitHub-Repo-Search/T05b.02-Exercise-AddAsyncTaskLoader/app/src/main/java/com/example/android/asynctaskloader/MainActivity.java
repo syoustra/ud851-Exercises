@@ -40,9 +40,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     /* A constant to save and restore the URL that is being displayed */
     private static final String SEARCH_QUERY_URL_EXTRA = "query";
 
-    // TODO (28) Remove the key for storing the search results JSON
+    // COMPLETED (28) Remove the key for storing the search results JSON
     /* A constant to save and restore the JSON that is being displayed */
-    private static final String SEARCH_RESULTS_RAW_JSON = "results";
 
     // COMPLETED (2) Create a constant int to uniquely identify your loader. Call it GITHUB_SEARCH_LOADER
     private static final int GITHUB_SEARCH_LOADER = 22;
@@ -73,12 +72,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if (savedInstanceState != null) {
             String queryUrl = savedInstanceState.getString(SEARCH_QUERY_URL_EXTRA);
 
-            // TODO (26) Remove the code that retrieves the JSON
-            String rawJsonSearchResults = savedInstanceState.getString(SEARCH_RESULTS_RAW_JSON);
+            // COMPLETED (26) Remove the code that retrieves the JSON
 
             mUrlDisplayTextView.setText(queryUrl);
-            // TODO (25) Remove the code that displays the JSON
-            mSearchResultsTextView.setText(rawJsonSearchResults);
+            // COMPLETED (25) Remove the code that displays the JSON
         }
 
         // COMPLETED (24) Initialize the loader with GITHUB_SEARCH_LOADER as the ID, null for the bundle, and this for the context
@@ -238,38 +235,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
 
-    // TODO (29) Delete the AsyncTask class
-    public class GithubQueryTask extends AsyncTask<URL, Void, String> {
+    // COMPLETED (29) Delete the AsyncTask class
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-        }
-
-        @Override
-        protected String doInBackground(URL... params) {
-            URL searchUrl = params[0];
-            String githubSearchResults = null;
-            try {
-                githubSearchResults = NetworkUtils.getResponseFromHttpUrl(searchUrl);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return githubSearchResults;
-        }
-
-        @Override
-        protected void onPostExecute(String githubSearchResults) {
-            mLoadingIndicator.setVisibility(View.INVISIBLE);
-            if (githubSearchResults != null && !githubSearchResults.equals("")) {
-                showJsonDataView();
-                mSearchResultsTextView.setText(githubSearchResults);
-            } else {
-                showErrorMessage();
-            }
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -294,8 +261,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         String queryUrl = mUrlDisplayTextView.getText().toString();
         outState.putString(SEARCH_QUERY_URL_EXTRA, queryUrl);
 
-        // TODO (27) Remove the code that persists the JSON
-        String rawJsonSearchResults = mSearchResultsTextView.getText().toString();
-        outState.putString(SEARCH_RESULTS_RAW_JSON, rawJsonSearchResults);
+        // COMPLETED (27) Remove the code that persists the JSON
     }
 }
