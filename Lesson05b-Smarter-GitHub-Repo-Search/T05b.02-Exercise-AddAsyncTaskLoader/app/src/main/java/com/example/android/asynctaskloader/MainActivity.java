@@ -92,16 +92,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private void makeGithubSearchQuery() {
         String githubQuery = mSearchBoxEditText.getText().toString();
 
-        // TODO (17) If no search was entered, indicate that there isn't anything to search for and return
+        // COMPLETED (17) If no search was entered, indicate that there isn't anything to search for and return
+        if (TextUtils.isEmpty(githubQuery)) {
+            mUrlDisplayTextView.setText("No search term entered.");
+            return;
+        }
 
         URL githubSearchUrl = NetworkUtils.buildUrl(githubQuery);
         mUrlDisplayTextView.setText(githubSearchUrl.toString());
 
-        // TODO (18) Remove the call to execute the AsyncTask
-        new GithubQueryTask().execute(githubSearchUrl);
+        // COMPLETED (18) Remove the call to execute the AsyncTask
 
-        // TODO (19) Create a bundle called queryBundle
-        // TODO (20) Use putString with SEARCH_QUERY_URL_EXTRA as the key and the String value of the URL as the value
+        // COMPLETED (19) Create a bundle called queryBundle
+        Bundle queryBundle = new Bundle();
+        // COMPLETED (20) Use putString with SEARCH_QUERY_URL_EXTRA as the key and the String value of the URL as the value
+        queryBundle.putString(SEARCH_QUERY_URL_EXTRA, githubSearchUrl.toString());
 
         // TODO (21) Call getSupportLoaderManager and store it in a LoaderManager variable
         // TODO (22) Get our Loader by calling getLoader and passing the ID we specified
@@ -207,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // COMPLETED (14) Hide the loading indicator
         mLoadingIndicator.setVisibility(View.INVISIBLE);
 
-        // COMPLETED (15) Use the same logic used in onPostExecute to show the data or the error message
+        // COMPLETEDo (15) Use the same logic used in onPostExecute to show the data or the error message
         if (data != null && !data.equals("")) {
             showJsonDataView();
             mSearchResultsTextView.setText(data);
