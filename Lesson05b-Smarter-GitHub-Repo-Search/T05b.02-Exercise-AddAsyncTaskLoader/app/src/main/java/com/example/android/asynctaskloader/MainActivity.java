@@ -21,6 +21,7 @@ import android.content.Loader;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -153,11 +154,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // COMPLETED (4) Return a new AsyncTaskLoader<String> as an anonymous inner class with this as the constructor's parameter
         return new AsyncTaskLoader<String>(this) {
-            @Override
-            public String loadInBackground() {
-                return null;
-            }
-
 
             // COMPLETED (5) Override onStartLoading
 
@@ -178,21 +174,37 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 // END - onStartLoading
             }
 
+            // COMPLETED (9) Override loadInBackground
+            @Override
+            public String loadInBackground() {
+                // Within loadInBackground
+
+                // COMPLETED (10) Get the String for our URL from the bundle passed to onCreateLoader
+                String searchQueryUrlString = args.getString(SEARCH_QUERY_URL_EXTRA)
+
+                // COMPLETED (11) If the URL is null or empty, return null
+                if (searchQueryUrlString == null || TextUtils.isEmpty(searchQueryUrlString)) {
+                    return null;
+                }
+
+                // COMPLETED (12) Copy the try / catch block from the AsyncTask's doInBackground method
+                try {
+                    URL githubUrl = new URL(searchQueryUrlString);
+                    return NetworkUtils.getResponseFromHttpUrl(githubUrl);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+
+                // END - loadInBackground
+            }
+
+
 
         }
 
     }
 
-
-            // TODO (9) Override loadInBackground
-
-                // Within loadInBackground
-                // TODO (10) Get the String for our URL from the bundle passed to onCreateLoader
-
-                // TODO (11) If the URL is null or empty, return null
-
-                // TODO (12) Copy the try / catch block from the AsyncTask's doInBackground method
-                // END - loadInBackground
 
     // TODO (13) Override onLoadFinished
 
