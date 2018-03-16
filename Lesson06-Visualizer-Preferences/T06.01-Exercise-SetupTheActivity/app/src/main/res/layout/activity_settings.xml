@@ -6,4 +6,6 @@
     android:layout_height="match_parent"
     tools:context="android.example.com.visualizerpreferences.SettingsActivity">
 
+                                                                <!-- SOLUTION ALSO HAS  id/activity_settings & padding; no xmlns:app-->
+
 </android.support.constraint.ConstraintLayout>
