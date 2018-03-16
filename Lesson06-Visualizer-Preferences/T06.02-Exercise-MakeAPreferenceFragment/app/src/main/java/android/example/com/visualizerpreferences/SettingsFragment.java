@@ -9,7 +9,7 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {        //SOLUTION HAS Bundle bundle, String S
         addPreferencesFromResource(R.xml.pref_visualizer);
     }
 }
