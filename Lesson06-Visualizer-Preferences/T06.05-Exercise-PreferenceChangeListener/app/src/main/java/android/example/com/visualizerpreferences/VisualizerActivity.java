@@ -65,7 +65,7 @@ public class VisualizerActivity extends AppCompatActivity implements SharedPrefe
     // COMPLETED (2) Override the onSharedPreferenceChanged method and update the show bass preference
     // COMPLETED (4) Override onDestroy and unregister the listener
 
-
+                                                                            //SOLUTION HAD onDestroy AT END OF FILE
     @Override
     protected void onDestroy() {
         super.onDestroy();
