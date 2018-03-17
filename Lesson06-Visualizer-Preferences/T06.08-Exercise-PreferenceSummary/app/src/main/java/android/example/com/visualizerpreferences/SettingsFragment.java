@@ -53,6 +53,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
         }
 
     }
+                                                                    //SOLUTION SWITCHES ORDER OF PreferenceSummary AND PreferenceChanged
 
     private void setPreferenceSummary(Preference preference, String value) {
         if (preference instanceof ListPreference) {
@@ -93,7 +94,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
-    @Override
+    @Override                                                               //SOLUTION HAS onDestroy, BUT I DID NOT HAVE THAT OPTION
     public void onDestroyView() {
         super.onDestroyView();
         getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
