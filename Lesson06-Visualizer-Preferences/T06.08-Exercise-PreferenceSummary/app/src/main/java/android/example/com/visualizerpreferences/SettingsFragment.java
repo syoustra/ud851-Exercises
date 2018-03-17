@@ -68,10 +68,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
     // call setPreferenceSummary on the changed preference
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-
-
-
-
+        Preference preference = findPreference(key);
+        if (null != preference) {
+            if (!(preference instanceof CheckBoxPreference)) {
+                String value = sharedPreferences.getString((preference.getKey()), "");
+                setPreferenceSummary(preference, value);
+            }
+        }
 
     }
 
@@ -84,5 +87,15 @@ public class SettingsFragment extends PreferenceFragmentCompat implements OnShar
     // onCreate and onDestroy respectively.
 
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+    }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+    }
 }
