@@ -89,7 +89,7 @@ public class VisualizerActivity extends AppCompatActivity implements SharedPrefe
             mVisualizerView.setShowTreble(sharedPreferences.getBoolean(key, getResources().getBoolean(R.bool.pref_show_treble_default)));
         } else if (key.equals(getString(R.string.pref_color_key))) {
             loadColorFromPreferences(sharedPreferences);
-        } else if (key.equals(getString(R.string.pref_size_key))) {
+        } else if (key.equals(getString(R.string.pref_size_key))) {             //SOLUTION HAS THE CODE SPELLED OUT INSTEAD OF THE METHOD
             loadSizeFromSharedPreferences(sharedPreferences);
         }
     }
