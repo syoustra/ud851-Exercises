@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 // TODO (1) Implement OnPreferenceChangeListener
 public class SettingsFragment extends PreferenceFragmentCompat implements
-        OnSharedPreferenceChangeListener {
+        OnSharedPreferenceChangeListener, Preference.OnPreferenceChangeListener {
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
@@ -52,6 +52,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             }
         }
         // TODO (3) Add the OnPreferenceChangeListener specifically to the EditTextPreference
+        Preference preference = findPreference(getString(R.string.pref_size_key));
+        preference.setOnPreferenceChangeListener(this);
+
     }
 
     @Override
@@ -94,6 +97,27 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     // an error message and return false. If it is a valid number, return true.
 
     @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        Toast error = Toast.makeText(getContext(), "Please select a number between .1 and 3", Toast.LENGTH_SHORT);
+
+        String sizeKey = getString(R.string.pref_size_key);
+        if (preference.getKey().equals(sizeKey)) {
+            String stringSize = (String) newValue;
+            try {
+                float size = Float.parseFloat(stringSize);
+                if (size <= 0 || size > 3) {
+                    error.show();
+                    return false;
+                }
+            } catch (NumberFormatException nfe) {
+                error.show();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getPreferenceScreen().getSharedPreferences()
@@ -106,4 +130,5 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         getPreferenceScreen().getSharedPreferences()
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
+
 }
