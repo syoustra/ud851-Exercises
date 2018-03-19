@@ -20,7 +20,7 @@ public class GuestListAdapter extends RecyclerView.Adapter<GuestListAdapter.Gues
      * @param context the calling context/activity
      */
     // TODO (9) Update the Adapter constructor to accept an integer for the count along with the context
-    public GuestListAdapter(Context context, Integer count) {
+    public GuestListAdapter(Context context, int count) {
         this.mContext = context;
         // TODO (10) Set the local mCount to be equal to count
         mCount = count;
