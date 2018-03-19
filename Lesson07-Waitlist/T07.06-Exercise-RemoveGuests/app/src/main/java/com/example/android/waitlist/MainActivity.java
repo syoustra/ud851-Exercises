@@ -72,15 +72,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 // TODO (8) Inside, get the viewHolder's itemView's tag and store in a long variable id
+                long id = (long) viewHolder.itemView.getTag();
                 // TODO (9) call removeGuest and pass through that id
+                removeGuest(id);
                 // TODO (10) call swapCursor on mAdapter passing in getAllGuests() as the argument
+                mAdapter.swapCursor(getAllGuests());
 
             }
 
+            //TODO (11) attach the ItemTouchHelper to the waitlistRecyclerView
 
-        });
+        }).attachToRecyclerView(waitlistRecyclerView);
 
-        //TODO (11) attach the ItemTouchHelper to the waitlistRecyclerView
 
     }
 
