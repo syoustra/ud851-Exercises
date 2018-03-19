@@ -1,10 +1,14 @@
 package com.example.android.waitlist;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.example.android.waitlist.data.TestUtil;
+import com.example.android.waitlist.data.WaitlistDbHelper;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -12,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private GuestListAdapter mAdapter;
 
     // TODO (1) Create a local field member of type SQLiteDatabase called mDb
+    private SQLiteDatabase mDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +35,13 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new GuestListAdapter(this);
 
         // TODO (2) Create a WaitlistDbHelper instance, pass "this" to the constructor as context
+        WaitlistDbHelper waitlistDbHelper = new WaitlistDbHelper(this);
 
         // TODO (3) Get a writable database reference using getWritableDatabase and store it in mDb
+        mDb = waitlistDbHelper.getWritableDatabase();
 
         // TODO (4) call insertFakeData from TestUtil and pass the database reference mDb
+        TestUtil.insertFakeData(mDb);
 
         // TODO (7) Run the getAllGuests function and store the result in a Cursor variable
 
