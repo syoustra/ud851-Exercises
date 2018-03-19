@@ -72,23 +72,23 @@ public class MainActivity extends AppCompatActivity {
      */
     public void addToWaitlist(View view) {
 
-        // TODO (9) First thing, check if any of the EditTexts are empty, return if so
+        // COMPLETED (9) First thing, check if any of the EditTexts are empty, return if so
         if (mNewGuestNameEditText.getText().length() == 0 || mNewPartySizeEditText.getText().length() == 0) {
             return;
         }
 
-        // TODO (10) Create an integer to store the party size and initialize to 1
+        // COMPLETED (10) Create an integer to store the party size and initialize to 1
         int partySize = 1;
 
-        // TODO (11) Use Integer.parseInt to parse mNewPartySizeEditText.getText to an integer
-        // TODO (12) Make sure you surround the Integer.parseInt with a try catch and log any exception
+        // COMPLETED (11) Use Integer.parseInt to parse mNewPartySizeEditText.getText to an integer
+        // COMPLETED (12) Make sure you surround the Integer.parseInt with a try catch and log any exception
         try {
             partySize = Integer.parseInt(mNewPartySizeEditText.getText().toString());
         } catch (Exception e) {
 //            Log.e(LOG_TAG , "Failed to parse party size text to number: " + ex.getMessage());   //FROM SOLUTION; COMMENTED BC RED LINES
         }
 
-        // TODO (14) call addNewGuest with the guest name and party size
+        // COMPLETED (14) call addNewGuest with the guest name and party size
         addGuest(mNewGuestNameEditText.getText().toString(), partySize);
 
         // TODO (19) call mAdapter.swapCursor to update the cursor by passing in getAllGuests()
