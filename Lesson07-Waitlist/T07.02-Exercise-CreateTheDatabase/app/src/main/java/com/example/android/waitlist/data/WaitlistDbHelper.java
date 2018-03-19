@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.android.waitlist.data.WaitlistContract.WaitlistEntry;
+
 // TODO (1) extend the SQLiteOpenHelper class
 public class WaitlistDbHelper extends SQLiteOpenHelper {
 
@@ -22,9 +24,22 @@ public class WaitlistDbHelper extends SQLiteOpenHelper {
 
     // TODO (5) Override the onCreate method
 
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+
         // TODO (6) Inside, create an String query called SQL_CREATE_WAITLIST_TABLE that will create the table
+        final String SQL_CREATE_WAITLIST_TABLE = "CREATE TABLE " +
+                WaitlistEntry.TABLE_NAME + " (" +
+                WaitlistEntry._ID + " NTEGER PRIMARY KEY AUTOINCREMENT, " +
+                WaitlistEntry.COLUMN_GUEST_NAME + " TEXT NOT NULL, " +
+                WaitlistEntry.COLUMN_PARTY_SIZE + " INTEGER NOT NULL, " +
+                WaitlistEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+                ");";
+
 
         // TODO (7) Execute the query by calling execSQL on sqLiteDatabase and pass the string query SQL_CREATE_WAITLIST_TABLE
+
+    }
 
     // TODO (8) Override the onUpgrade method
 
