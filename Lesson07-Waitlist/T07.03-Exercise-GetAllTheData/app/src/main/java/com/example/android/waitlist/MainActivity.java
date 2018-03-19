@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = getAllGuests();
 
         // TODO (12) Pass the resulting cursor count to the adapter
+        mAdapter = new GuestListAdapter(this, cursor.getCount());
 
         // Link the adapter to the RecyclerView
         waitlistRecyclerView.setAdapter(mAdapter);
