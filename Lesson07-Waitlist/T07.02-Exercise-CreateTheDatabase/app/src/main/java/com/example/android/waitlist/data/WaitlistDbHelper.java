@@ -25,7 +25,7 @@ public class WaitlistDbHelper extends SQLiteOpenHelper {
     // TODO (5) Override the onCreate method
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
         // TODO (6) Inside, create an String query called SQL_CREATE_WAITLIST_TABLE that will create the table
         final String SQL_CREATE_WAITLIST_TABLE = "CREATE TABLE " +
@@ -38,6 +38,7 @@ public class WaitlistDbHelper extends SQLiteOpenHelper {
 
 
         // TODO (7) Execute the query by calling execSQL on sqLiteDatabase and pass the string query SQL_CREATE_WAITLIST_TABLE
+        sqLiteDatabase.execSQL(SQL_CREATE_WAITLIST_TABLE);
 
     }
 
