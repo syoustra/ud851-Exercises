@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This is called from the layout when the button is clicked and switches between the
      * two app states.
+     *
      * @param view The view that was clicked
      */
     public void onButtonClick(View view) {
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         mButton.setText(getString(R.string.next_word));
 
         // COMPLETED (4) Show the definition
-                                                                        // SOLUTION ALSO CHECKS THAT mDATA IS NOT NULL
+        // SOLUTION ALSO CHECKS THAT mDATA IS NOT NULL
         mDefinitionTextView.setVisibility(View.VISIBLE);
 
         mCurrentState = STATE_SHOWN;
@@ -165,8 +166,8 @@ public class MainActivity extends AppCompatActivity {
             mWordCol = mData.getColumnIndex(DroidTermsExampleContract.COLUMN_WORD);
             mDefCol = mData.getColumnIndex(DroidTermsExampleContract.COLUMN_DEFINITION);
             nextWord();
-           }
         }
     }
-
 }
+
+
