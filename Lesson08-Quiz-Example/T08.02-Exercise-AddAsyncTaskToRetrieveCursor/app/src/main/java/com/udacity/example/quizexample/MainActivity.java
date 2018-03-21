@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     // The current state of the app
     private int mCurrentState;
 
-    // TODO (3) Create an instance variable storing a Cursor called mData
+    // COMPLETED (3) Create an instance variable storing a Cursor called mData
     private Cursor mData;
     private Button mButton;
 
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         // Get the views
         mButton = (Button) findViewById(R.id.button_next);
 
-        // TODO (5) Create and execute your AsyncTask here
+        // COMPLETED (5) Create and execute your AsyncTask here
         new wordSearchTask().execute();
     }
 
@@ -97,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // TODO (1) Create AsyncTask with the following generic types <Void, Void, Cursor>
+    // COMPLETED (1) Create AsyncTask with the following generic types <Void, Void, Cursor>
     public class wordSearchTask extends AsyncTask<Void, Void, Cursor> {
 
-        // TODO (2) In the doInBackground method, write the code to access the DroidTermsExample
+        // COMPLETED (2) In the doInBackground method, write the code to access the DroidTermsExample
         // provider and return the Cursor object
         @Override
         protected Cursor doInBackground(Void... voids) {
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             return cursor;
         }
 
-        // TODO (4) In the onPostExecute method, store the Cursor object in mData
+        // COMPLETED (4) In the onPostExecute method, store the Cursor object in mData
 
         @Override
         protected void onPostExecute(Cursor cursor) {
