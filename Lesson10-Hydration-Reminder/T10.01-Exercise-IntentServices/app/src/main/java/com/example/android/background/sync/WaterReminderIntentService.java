@@ -1,4 +1,4 @@
-/*
+package com.example.android.background.sync;/*
  * Copyright (C) 2016 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,8 +25,8 @@ public class WaterReminderIntentService extends IntentService {
     //  TODO (10) Create a default constructor that calls super with the name of this class
 
 
-    public WaterReminderIntentService(String name) {
-        super(name);
+    public WaterReminderIntentService() {
+        super("WaterReminderIntentService");
     }
 
     //  TODO (11) Override onHandleIntent

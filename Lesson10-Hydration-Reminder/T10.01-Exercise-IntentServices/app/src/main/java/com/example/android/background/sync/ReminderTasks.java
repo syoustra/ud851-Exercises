@@ -15,7 +15,7 @@ public class ReminderTasks {
     public static void executeTask(Context context, String action) {
         // TODO (8) If the action equals ACTION_INCREMENT_WATER_COUNT, call this class's incrementWaterCount
         if (action.equals(ACTION_INCREMENT_WATER_COUNT)) {
-            incrementWaterCount();
+            incrementWaterCount(context);
         }
     }
     // TODO (3) Create a private static void method called incrementWaterCount
