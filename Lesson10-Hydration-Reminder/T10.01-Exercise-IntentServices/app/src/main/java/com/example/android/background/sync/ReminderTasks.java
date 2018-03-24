@@ -14,7 +14,7 @@ public class ReminderTasks {
     // TODO (7) Add a Context called context and String parameter called action to the parameter list
     public static void executeTask(Context context, String action) {
         // TODO (8) If the action equals ACTION_INCREMENT_WATER_COUNT, call this class's incrementWaterCount
-        if (action.equals(ACTION_INCREMENT_WATER_COUNT)) {
+        if (action.equals(ACTION_INCREMENT_WATER_COUNT)) {                          //SOLUTION HAS action_increment.equals(action)
             incrementWaterCount(context);
         }
     }
