@@ -1,5 +1,6 @@
 package com.example.android.background.utilities;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,6 +10,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 
 import com.example.android.background.MainActivity;
 import com.example.android.background.R;
@@ -21,6 +24,8 @@ public class NotificationUtils {
     private static final int WATER_REMINDING_PENDING_INTENT_ID = 3417;
 
     private static final String WATER_REMINDING_NOTIFICATION_CHANNEL_ID = "reminder_notification_channel";
+
+    private static final int WATER_REMINDER_NOTIFICATION_ID = 1138;
 
     // TODO (7) Create a method called remindUserBecauseCharging which takes a Context.
     // This method will create a notification for charging. It might be helpful
@@ -51,10 +56,28 @@ public class NotificationUtils {
         // - sets the notification defaults to vibrate
         // - uses the content intent returned by the contentIntent helper method for the contentIntent
         // - automatically cancels the notification when the notification is clicked
+
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, WATER_REMINDING_NOTIFICATION_CHANNEL_ID)
+                .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
+                .setSmallIcon(R.drawable.ic_drink_notification)
+                .setLargeIcon(largeIcon(context))
+                .setContentTitle(context.getString(R.string.charging_reminder_notification_title))
+                .setContentText(context.getString(R.string.charging_reminder_notification_body))
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(context.getString(R.string.charging_reminder_notification_body)))
+                .setDefaults(Notification.DEFAULT_VIBRATE)
+                .setContentIntent(contentIntent(context))
+                .setAutoCancel(true);
+
+
         // TODO (11) If the build version is greater than JELLY_BEAN and lower than OREO,
         // set the notification's priority to PRIORITY_HIGH.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            notificationBuilder.setPriority(NotificationCompat.PRIORITY_HIGH)
+        }
         // TODO (12) Trigger the notification by calling notify on the NotificationManager.
         // Pass in a unique ID of your choosing for the notification and notificationBuilder.build()
+       notificationManager.notify(WATER_REMINDER_NOTIFICATION_ID, notificationBuilder.build());
+
     }
 
 
