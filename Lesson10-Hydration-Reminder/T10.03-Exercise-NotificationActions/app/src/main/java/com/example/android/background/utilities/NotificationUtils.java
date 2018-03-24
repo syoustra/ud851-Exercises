@@ -112,12 +112,21 @@ public class NotificationUtils {
 
 
     //  TODO (11) Add a static method called drinkWaterAction
-    //      TODO (12) Create an Intent to launch WaterReminderIntentService
-    //      TODO (13) Set the action of the intent to designate you want to increment the water count
-    //      TODO (14) Create a PendingIntent from the intent to launch WaterReminderIntentService
-    //      TODO (15) Create an Action for the user to tell us they've had a glass of water
-    //      TODO (16) Return the action
+    private static NotificationCompat.Action drinkWaterAction(Context context) {
 
+        //      TODO (12) Create an Intent to launch WaterReminderIntentService
+        Intent intent = new Intent (context, WaterReminderIntentService.class);
+        //      TODO (13) Set the action of the intent to designate you want to increment the water count
+        intent.setAction(ReminderTasks.ACTION_INCREMENT_WATER_COUNT);
+        //      TODO (14) Create a PendingIntent from the intent to launch WaterReminderIntentService
+        PendingIntent incrementWaterPendingIntent = PendingIntent.getService(
+                context, ACTION_DRINK_PENDING_INTENT, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //      TODO (15) Create an Action for the user to tell us they've had a glass of water
+        NotificationCompat.Action incrementWaterAction = new NotificationCompat.Action(R.drawable.ic_local_drink_black_24px,
+                "I did it!", incrementWaterPendingIntent);
+        //      TODO (16) Return the action
+        return incrementWaterAction;
+    }
 
     private static PendingIntent contentIntent(Context context) {
         Intent startActivityIntent = new Intent(context, MainActivity.class);
