@@ -84,6 +84,8 @@ public class NotificationUtils {
                 .setDefaults(Notification.DEFAULT_VIBRATE)
                 .setContentIntent(contentIntent(context))
                 // TODO (17) Add the two new actions using the addAction method and your helper methods
+                .addAction(drinkWaterAction(context))
+                .addAction(ignoreReminderAction(context))
                 .setAutoCancel(true);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN
@@ -122,10 +124,10 @@ public class NotificationUtils {
         PendingIntent incrementWaterPendingIntent = PendingIntent.getService(
                 context, ACTION_DRINK_PENDING_INTENT, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         //      TODO (15) Create an Action for the user to tell us they've had a glass of water
-        NotificationCompat.Action incrementWaterAction = new NotificationCompat.Action(R.drawable.ic_local_drink_black_24px,
+        NotificationCompat.Action drinkWaterAction = new NotificationCompat.Action(R.drawable.ic_local_drink_black_24px,
                 "I did it!", incrementWaterPendingIntent);
         //      TODO (16) Return the action
-        return incrementWaterAction;
+        return drinkWaterAction;
     }
 
     private static PendingIntent contentIntent(Context context) {
