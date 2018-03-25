@@ -15,6 +15,8 @@
  */
 package com.example.android.background;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -144,8 +146,22 @@ public class MainActivity extends AppCompatActivity implements
 
 
     // TODO (2) Create an inner class called ChargingBroadcastReceiver that extends BroadcastReceiver
+    private class ChargingBroadcastReceiver extends BroadcastReceiver {
+
         // TODO (3) Override onReceive to get the action from the intent and see if it matches the
         // Intent.ACTION_POWER_CONNECTED. If it matches, it's charging. If it doesn't match, it's not
         // charging.
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            boolean isCharging = (action.equals(Intent.ACTION_POWER_CONNECTED));
+            showCharging(isCharging);
+            }
+        }
+
+
         // TODO (4) Update the UI using the showCharging method you wrote
+    }
+
 }
