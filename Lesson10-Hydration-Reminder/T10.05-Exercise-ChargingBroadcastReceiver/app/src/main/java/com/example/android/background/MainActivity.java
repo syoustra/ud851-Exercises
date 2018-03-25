@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements
 
     private Toast mToast;
     IntentFilter mChargingIntentFilter;
+    ChargingBroadcastReceiver mChargingReceiver;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,19 +73,35 @@ public class MainActivity extends AppCompatActivity implements
         // when the charging state changes.
         mChargingIntentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
         mChargingIntentFilter.addAction(Intent.ACTION_GTALK_SERVICE_DISCONNECTED);
+
+        mChargingReceiver = new ChargingBroadcastReceiver();
     }
 
     // TODO (7) Override onResume and setup your broadcast receiver. Do this by calling
     // registerReceiver with the ChargingBroadcastReceiver and IntentFilter.
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(mChargingReceiver, mChargingIntentFilter)
+    }
+
+
     // TODO (8) Override onPause and unregister your receiver using the unregisterReceiver method
-    
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(mChargingReceiver);
+    }
+
     /**
      * Updates the TextView to display the new water count from SharedPreferences
      */
     private void updateWaterCount() {
         int waterCount = PreferenceUtilities.getWaterCount(this);
-        mWaterCountDisplay.setText(waterCount+"");
+        mWaterCountDisplay.setText(waterCount + "");
     }
 
     /**
@@ -122,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements
         startService(incrementWaterCountIntent);
     }
 
-    
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -156,12 +174,11 @@ public class MainActivity extends AppCompatActivity implements
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             boolean isCharging = (action.equals(Intent.ACTION_POWER_CONNECTED));
+            // TODO (4) Update the UI using the showCharging method you wrote
             showCharging(isCharging);
-            }
         }
-
-
-        // TODO (4) Update the UI using the showCharging method you wrote
     }
 
+
 }
+
