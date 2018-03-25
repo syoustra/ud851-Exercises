@@ -50,7 +50,7 @@ public class ReminderTasks {
     private static void issueChargingReminder(Context context) {
         PreferenceUtilities.getChargingReminderCount(context);
         NotificationUtils.remindUserBecauseCharging(context);
-        
+
     }
 
 
