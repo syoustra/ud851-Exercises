@@ -16,6 +16,17 @@
 package com.example.android.background.sync;
 
 
+import android.content.Context;
+import android.support.annotation.NonNull;
+
+import com.firebase.jobdispatcher.Constraint;
+import com.firebase.jobdispatcher.Driver;
+import com.firebase.jobdispatcher.FirebaseJobDispatcher;
+import com.firebase.jobdispatcher.GooglePlayDriver;
+import com.firebase.jobdispatcher.Job;
+import com.firebase.jobdispatcher.Lifetime;
+import com.firebase.jobdispatcher.Trigger;
+
 import java.util.concurrent.TimeUnit;
 
 public class ReminderUtilities {
@@ -35,9 +46,17 @@ public class ReminderUtilities {
     // in a context. This method will use FirebaseJobDispatcher to schedule a job that repeats roughly
     // every REMINDER_INTERVAL_SECONDS when the phone is charging. It will trigger WaterReminderFirebaseJobService
     // Checkout https://github.com/firebase/firebase-jobdispatcher-android for an example
+
+    synchronized public static void scheduleChargingReminder(@NonNull final Context context) {
         // TODO (17) If the job has already been initialized, return
+        if (sInitialized) return;
+
         // TODO (18) Create a new GooglePlayDriver
+        Driver driver = new GooglePlayDriver(context);
+
         // TODO (19) Create a new FirebaseJobDispatcher with the driver
+        FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(driver);
+
         // TODO (20) Use FirebaseJobDispatcher's newJobBuilder method to build a job which:
             // - has WaterReminderFirebaseJobService as it's service
             // - has the tag REMINDER_JOB_TAG
@@ -47,7 +66,23 @@ public class ReminderUtilities {
             // - occurs every 15 minutes with a window of 15 minutes. You can do this using a
             //   setTrigger, passing in a Trigger.executionWindow
             // - replaces the current job if it's already running
-        // Finally, you should build the job.
+            // Finally, you should build the job.
+        Job constraintReminderJob = dispatcher.newJobBuilder()
+                .setService(WaterReminderFirebaseJobService.class)
+                .setTag(REMINDER_JOB_TAG)
+                .setConstraints(Constraint.DEVICE_CHARGING)
+                .setLifetime(Lifetime.FOREVER)
+                .setRecurring(true)
+                .setTrigger(Trigger.executionWindow(REMINDER_INTERVAL_SECONDS, REMINDER_INTERVAL_SECONDS + SYNC_FLEXTIME_SECONDS))
+                .setReplaceCurrent(true)
+                .build();
+
         // TODO (21) Use dispatcher's schedule method to schedule the job
+        dispatcher.schedule(constraintReminderJob);
+
         // TODO (22) Set sInitialized to true to mark that we're done setting up the job
+        sInitialized = true;
+
+    }
+
 }
