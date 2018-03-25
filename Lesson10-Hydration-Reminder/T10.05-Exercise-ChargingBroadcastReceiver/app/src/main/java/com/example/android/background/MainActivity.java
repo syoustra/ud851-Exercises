@@ -16,6 +16,7 @@
 package com.example.android.background;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements
     private ImageView mChargingImageView;
 
     private Toast mToast;
+    IntentFilter mChargingIntentFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +62,13 @@ public class MainActivity extends AppCompatActivity implements
 
         // TODO (5) Create and instantiate a new instance variable for your ChargingBroadcastReceiver
         // and an IntentFilter
+        mChargingIntentFilter = new IntentFilter();
+
         // TODO (6) Call the addAction method on your intent filter and add Intent.ACTION_POWER_CONNECTED
         // and Intent.ACTION_POWER_DISCONNECTED. This sets up an intent filter which will trigger
         // when the charging state changes.
+        mChargingIntentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
+        mChargingIntentFilter.addAction(Intent.ACTION_GTALK_SERVICE_DISCONNECTED);
     }
 
     // TODO (7) Override onResume and setup your broadcast receiver. Do this by calling
