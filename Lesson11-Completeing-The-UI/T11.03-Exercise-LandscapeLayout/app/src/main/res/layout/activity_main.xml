@@ -55,40 +55,13 @@
         <include
             android:id="@+id/flight_info"
             layout="@layout/flight_info"
-
-
-            />
-
-
-
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat="@mipmap/barcode"
-            android:id="@+id/barcode"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tableImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewPassengerName"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             />
-
-
-
-        <!--
-            TODO (4) Move all Views in the boarding information table from activity_main to boarding_info
-            TODO (6) Add an include tag in activity_main to include boardingInfo in the right position
-        -->
-        <include android:id="@+id/boarding_info"
-            layout="@layout/boarding_info"
-
-
-
-
-            />
-
-
-
 
         <TextView
             android:id="@+id/textViewBoardingTimeLabel"
@@ -184,6 +157,43 @@
             android:textColor="@color/colorGood"
             app:layout_constraintLeft_toLeftOf="@+id/textViewArrivalTimeLabel"
             app:layout_constraintTop_toBottomOf="@+id/textViewArrivalTimeLabel" />
+
+
+
+        <!--
+            TODO (4) Move all Views in the boarding information table from activity_main to boarding_info
+            TODO (6) Add an include tag in activity_main to include boardingInfo in the right position
+        -->
+        <include android:id="@+id/boarding_info"
+            layout="@layout/boarding_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewArrivalTime"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            />
+
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@mipmap/barcode"
+            android:id="@+id/barcode"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/boarding_info"
+            android:layout_marginTop="16dp"
+            />
+
+
+
+
 
 
     </android.support.constraint.ConstraintLayout>
